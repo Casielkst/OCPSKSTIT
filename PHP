@@ -1,0 +1,19 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = $_POST['full_name'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+
+    // Делайте что-то с данными, например, отправьте их на почту
+    $to = "адрес_почты@ваш_домен.com";
+    $subject = "Новая заявка на обслуживание";
+    $message = "ФИО: $full_name\nАдрес проблемы: $address\nКонтактный телефон: $phone";
+    $headers = "From: ваш_домен.com";
+    
+    mail($to, $subject, $message, $headers);
+    
+    // Перенаправьте пользователя на страницу подтверждения
+    header("Location: confirmation.html");
+    exit();
+}
+?>
